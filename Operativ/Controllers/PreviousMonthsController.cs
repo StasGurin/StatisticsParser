@@ -23,7 +23,7 @@ namespace Operativ.Controllers
             for (int i = 3; i <= 14; i++)
             {
                 var dateInput = Parser.Parse(id, i);
-                if (dateInput.Persent.Equals("до грудня \r\n\t\tпопереднього року")) break;
+                if (dateInput.Persent == "до грудня \r\n\t\tпопереднього року") break;
                 await Collection.InsertOneAsync(dateInput);
             }
         }
