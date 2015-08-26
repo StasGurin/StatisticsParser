@@ -12,6 +12,8 @@ namespace Operativ.Models
         public int Id { get; set; }
         public string Persent { get; set; }
 
+        public string FakeProperty { get; set; }
+
         #endregion
 
         #region Constructors
