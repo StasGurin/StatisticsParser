@@ -22,9 +22,12 @@ namespace Operativ.Controllers
         {
             for (int i = 3; i <= 14; i++)
             {
+                
                 var dateInput = Parser.Parse(id, i);
+                var options = new UpdateOptions { IsUpsert = true };
+                var filter = Builders<Month>.Filter.Eq(m=>m.Id, dateInput.Id);
                 if (dateInput.Persent == "до грудня \r\n\t\tпопереднього року") break;
-                await Collection.InsertOneAsync(dateInput);
+                await Collection.ReplaceOneAsync(filter, dateInput, options);
             }
         }
     }
