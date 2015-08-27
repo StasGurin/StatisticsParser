@@ -14,7 +14,7 @@ namespace Operativ.Controllers
         public PreviousMonthsController()
         {
             var client = new MongoClient();
-            var database = client.GetDatabase("Operation");
+            var database = client.GetDatabase("Operation");           
             Collection = database.GetCollection<Month>("previousMonth");
         }
 
@@ -27,7 +27,7 @@ namespace Operativ.Controllers
                 var options = new UpdateOptions { IsUpsert = true };
                 var filter = Builders<Month>.Filter.Eq(m=>m.Id, dateInput.Id);
                 if (dateInput.Persent == "до грудня \r\n\t\tпопереднього року") break;
-                await Collection.ReplaceOneAsync(filter, dateInput, options);
+                await Collection.ReplaceOneAsync(filter, dateInput, options);             //insert and update date in DB
             }
         }
     }

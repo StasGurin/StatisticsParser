@@ -27,9 +27,9 @@ namespace Operativ.BLL
             {
                 var node = bodyNode.SelectSingleNode(".//tr[" + n + "]");
                 var nodeMounth = node.SelectSingleNode(".//td[1]");
-                var id = YearMonthExtensions.ToYearMonth(year, nodeMounth.InnerText);
+                var id = YearMonthExtensions.ToYearMonth(year, nodeMounth.InnerText);  //get id (format:yearmonth)
                 record.Id = id;
-                var nodePersent = node.SelectSingleNode(".//td[2]");
+                var nodePersent = node.SelectSingleNode(".//td[2]"); //get persetns from html page
                 record.Persent = nodePersent.InnerText.Trim();
             }  
             return record;
