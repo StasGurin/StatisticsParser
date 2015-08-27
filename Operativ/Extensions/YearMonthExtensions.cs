@@ -13,7 +13,7 @@ namespace Operativ.Extensions
             monthYear.Add("січень", 1);
             monthYear.Add("лютий", 2);
             monthYear.Add("березень", 3);
-            monthYear.Add("квітень", 4);                    //dictionare of string month to int
+            monthYear.Add("квітень", 4);                    //dictionare of string month to integer
             monthYear.Add("травень", 5);
             monthYear.Add("червень", 6);
             monthYear.Add("липень", 7);
