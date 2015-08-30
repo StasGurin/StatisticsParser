@@ -12,6 +12,7 @@ namespace Operativ.Models
         public int Id { get; set; }
         public string Persent { get; set; }
 
+
         #endregion
 
         #region Constructors
