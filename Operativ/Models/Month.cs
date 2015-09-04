@@ -9,7 +9,7 @@ namespace Operativ.Models
     {
         #region Properties
 
-        public int Id { get; set; }
+        public int YearMonth { get; set; }
         public string Persent { get; set; }
 
 
@@ -23,7 +23,7 @@ namespace Operativ.Models
 
         public Month(int yearMonth)
         {
-            Id = yearMonth;
+            YearMonth = yearMonth;
         }
 
         #endregion
