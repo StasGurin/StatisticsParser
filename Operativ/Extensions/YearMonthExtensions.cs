@@ -10,7 +10,7 @@ namespace Operativ.Extensions
                 {"січень", 1},
                 {"лютий", 2},
                 {"березень", 3},
-                {"квітень", 4},                    //dictionare of string month to int
+                {"квітень", 4},                    //dictionare of string month to integer
                 {"травень", 5},
                 {"червень", 6},
                 {"липень", 7},
