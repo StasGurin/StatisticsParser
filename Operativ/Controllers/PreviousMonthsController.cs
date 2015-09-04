@@ -25,7 +25,7 @@ namespace Operativ.Controllers
                 
                 var dateInput = Parser.Parse(id, i);
                 var options = new UpdateOptions { IsUpsert = true };
-                var filter = Builders<Month>.Filter.Eq(m=>m.Id, dateInput.Id);
+                var filter = Builders<Month>.Filter.Eq(m=>m.YearMonth, dateInput.YearMonth);
                 if (dateInput.Persent == "до грудня \r\n\t\tпопереднього року") break;
                 await Collection.ReplaceOneAsync(filter, dateInput, options);             //insert and update date in DB
             }

@@ -5,23 +5,25 @@ namespace Operativ.Extensions
 {
     public static class YearMonthExtensions
     {
-     
+        static Dictionary<string, int> monthYear = new Dictionary<string, int>()
+            {
+                {"січень", 1},
+                {"лютий", 2},
+                {"березень", 3},
+                {"квітень", 4},                    //dictionare of string month to int
+                {"травень", 5},
+                {"червень", 6},
+                {"липень", 7},
+                {"серпень", 8},
+                {"вересень", 9},
+                {"жовтень", 10},
+                {"листопад", 11},
+                {"грудень", 12}
+            };
 
         public static int ToYearMonth(this string year, string month)
         {
-            var monthYear = new Dictionary<string, int>();
-            monthYear.Add("січень", 1);
-            monthYear.Add("лютий", 2);
-            monthYear.Add("березень", 3);
-            monthYear.Add("квітень", 4);                    //dictionare of string month to int
-            monthYear.Add("травень", 5);
-            monthYear.Add("червень", 6);
-            monthYear.Add("липень", 7);
-            monthYear.Add("серпень", 8);
-            monthYear.Add("вересень", 9);
-            monthYear.Add("жовтень", 10);
-            monthYear.Add("листопад", 11);
-            monthYear.Add("грудень", 12);
+            
             month = month.Trim();
             foreach (var kvp in monthYear) 
             {
