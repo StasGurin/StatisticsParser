@@ -20,13 +20,13 @@ namespace Operativ.Controllers
 
         public async Task Get(string id)
         {
-            for (int i = 3; i <= 14; i++)
+            for (int parseLineNumber = 3; parseLineNumber <= 14; parseLineNumber++)
             {
-                
-                var dateInput = Parser.Parse(id, i);
+
+                var dateInput = Parser.Parse(id, parseLineNumber);
                 var options = new UpdateOptions { IsUpsert = true };
-                var filter = Builders<Month>.Filter.Eq(m=>m.YearMonth, dateInput.YearMonth);
-                if (dateInput.Persent == "до грудня \r\n\t\tпопереднього року") break;
+                var filter = Builders<Month>.Filter.Eq(m => m.YearMonth, dateInput.YearMonth);
+                if (dateInput.Percent == "до грудня \r\n\t\tпопереднього року") break;
                 await Collection.ReplaceOneAsync(filter, dateInput, options);             //insert and update date in DB
             }
         }

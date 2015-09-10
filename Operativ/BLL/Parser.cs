@@ -25,12 +25,12 @@ namespace Operativ.BLL
                 if (node != null)
                 {
                     var nodeMounth = node.SelectSingleNode(".//td[1]");
-                    var nodePersent = node.SelectSingleNode(".//td[2]"); //get persetns from html page
+                    var nodePersent = node.SelectSingleNode(".//td[2]"); //get percetns from html page
                     if ((nodeMounth != null)&&(nodePersent!=null))
                     {
                         var id = YearMonthExtensions.ToYearMonth(year, nodeMounth.InnerText);  //get id (format:yearmonth)
                         record.YearMonth = id;
-                        record.Persent = nodePersent.InnerText.Trim();
+                        record.Percent = nodePersent.InnerText.Trim();
                         
                     }
                 }
