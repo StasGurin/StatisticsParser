@@ -12,7 +12,6 @@ namespace Operativ.Models
         public int YearMonth { get; set; }
         public string Percent { get; set; }
 
-
         #endregion
 
         #region Constructors

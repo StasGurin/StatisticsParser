@@ -8,6 +8,7 @@ namespace Operativ.Extensions
         static Dictionary<string, int> monthYear = new Dictionary<string, int>()
             {
                 {"січень", 1},
+                {"cічень", 1},
                 {"лютий", 2},
                 {"березень", 3},
                 {"квітень", 4},                    //dictionare of string month to integer
@@ -24,7 +25,7 @@ namespace Operativ.Extensions
         public static int ToYearMonth(this string year, string month)
         {
             
-            month = month.Trim();
+            month = month.Trim().ToLower();
             foreach (var kvp in monthYear) 
             {
                 if (kvp.Key.Equals(month)) year = year + kvp.Value.ToString("D2");
