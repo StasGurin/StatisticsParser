@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -93,7 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BLL\Parser.cs" />
+    <Compile Include="BLL\BiscParser.cs" />
+    <Compile Include="BLL\IscParser.cs" />
     <Compile Include="Controllers\PreviousMonthsController.cs" />
     <Compile Include="Extensions\YearMonthExtensions.cs" />
     <Compile Include="Global.asax.cs">
