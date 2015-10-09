@@ -23,17 +23,19 @@ namespace Operativ.Controllers
         public async Task Get(string id)
         {
             var options = new UpdateOptions { IsUpsert = true };
-                for (;;)
+            int i = 0;
+            while (i != 2)
+            {
+                for (int parseLineNumber = i + 2; parseLineNumber <= i + 13; parseLineNumber++)
                 {
-                    var biscInput = BiscParser.Parse(id);
-                    var iscInput = IscParser.Parse(id);
-                    var biscFilter = Builders<Month>.Filter.Eq(m => m.YearMonth, biscInput.YearMonth);
-                    var iscFilter = Builders<Month>.Filter.Eq(m => m.YearMonth, biscInput.YearMonth);
-                    if ((biscInput.Percent == "до грудня \r\n\t\tпопереднього року") || (iscInput.Percent == "&nbsp;")) break;
-                    await collectionIsc.ReplaceOneAsync(iscFilter, iscInput, options);
-                    await сollectionBisc.ReplaceOneAsync(biscFilter, biscInput, options);             //insert and update date in DB
+                    var dateInput = Parser.Parse(id, parseLineNumber, i);
+                    var filter = Builders<Month>.Filter.Eq(m => m.YearMonth, dateInput.YearMonth);
+                    if ((dateInput.Percent == "до грудня \r\n\t\tпопереднього року") || (dateInput.Percent == "&nbsp;")) break;
+                    if (i == 0) await collectionIsc.ReplaceOneAsync(filter, dateInput, options);
+                    if (i == 1) await сollectionBisc.ReplaceOneAsync(filter, dateInput, options);             //insert and update date in DB
                 }
-
+                i++;
+            }
         }
     }
 }
