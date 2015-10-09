@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Operativ.Extensions
 {
@@ -27,15 +26,7 @@ namespace Operativ.Extensions
         {
             
             month = month.Trim().ToLower();
-            /*year = year + (from x in monthYear
-                          where x.Key.Contains(month)
-                          select x).ToString();
-            var monthLINQ = monthYear.SingleOrDefault(x => x.Key == month);*/
             if (monthYear.ContainsKey(month)) year+= monthYear[month].ToString("D2");
-            /*foreach (var kvp in monthYear) 
-            {
-                if (kvp.Key.Equals(month)) year = year + kvp.Value.ToString("D2");
-            }*/
             var yearInt = Convert.ToInt32(year);
             return yearInt;
          }

@@ -1,7 +1,7 @@
 ﻿using HtmlAgilityPack;
-using System.Text;
-using Operativ.Models;
 using Operativ.Extensions;
+using Operativ.Models;
+using System.Text;
 
 namespace Operativ.BLL
 {
@@ -17,8 +17,7 @@ namespace Operativ.BLL
                 AutoDetectEncoding = false,
                 OverrideEncoding = UTF8Encoding.GetEncoding("windows-1251"),
             };
-            var link = "http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/";
-            var docBisc = webGet.Load(link + "bisc/bisc_u/bisc_" + year + "u.htm");//get html-page for parse
+            var docBisc = webGet.Load("http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/bisc/bisc_u/bisc_" + year + "u.htm");//get html-page for parse
             var bodyNode = docBisc.DocumentNode.SelectSingleNode("//table[@class ='MsoNormalTable']");
             if (bodyNode != null)
             {
