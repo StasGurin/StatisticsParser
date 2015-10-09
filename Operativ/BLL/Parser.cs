@@ -30,8 +30,8 @@ namespace Operativ.BLL
                     var node = nodeMounth.SelectSingleNode(".//td[" + n + "]");
                     if (node != null)
                     {
-                        var yearMonth = YearMonthExtensions.ToYearMonth(year, node.InnerText);  //get id (format:yearmonth)
-                        record.YearMonth = yearMonth;
+                      //get id (format:yearmonth)
+                        record.YearMonth = YearMonthExtensions.ToYearMonth(year, node.InnerText);
 
                     }
                     node = nodePercent.SelectSingleNode(".//td[" + n + "]");
@@ -49,12 +49,12 @@ namespace Operativ.BLL
                 if (node != null)
                 {
                     var nodeMounth = node.SelectSingleNode(".//td[1]");
-                    var nodePersent = node.SelectSingleNode(".//td[2]"); //get percetns from html page
-                    if ((nodeMounth != null) && (nodePersent != null))
-                    {
-                        var yearMonth = YearMonthExtensions.ToYearMonth(year, nodeMounth.InnerText);  //get id (format:yearmonth)
-                        record.YearMonth = yearMonth;
-                        record.Percent = nodePersent.InnerText.Trim();
+                    var nodePercent = node.SelectSingleNode(".//td[2]"); //get percetns from html page
+                    if ((nodeMounth != null) && (nodePercent != null))
+                    {  
+                        //get id (format:yearmonth)
+                        record.YearMonth = YearMonthExtensions.ToYearMonth(year, nodeMounth.InnerText);
+                        record.Percent = nodePercent.InnerText.Trim();
 
                     }
                 }
