@@ -29,8 +29,8 @@ namespace Operativ.Extensions
             month = month.Trim().ToLower();
             /*year = year + (from x in monthYear
                           where x.Key.Contains(month)
-                          select x).ToString();*/
-           // var monthLINQ = monthYear.SingleOrDefault(x => x.Key == month);
+                          select x).ToString();
+            var monthLINQ = monthYear.SingleOrDefault(x => x.Key == month);*/
             if (monthYear.ContainsKey(month)) year+= monthYear[month].ToString("D2");
             /*foreach (var kvp in monthYear) 
             {
