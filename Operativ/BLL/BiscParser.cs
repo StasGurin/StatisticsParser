@@ -7,7 +7,7 @@ namespace Operativ.BLL
 {
     public class BiscParser
     {
-        static int parseLineNumber = 3;
+        public static int parseLineNumber = 3;
         static Month record = new Month();
 
         public static Month Parse(string year)
@@ -27,7 +27,7 @@ namespace Operativ.BLL
                     var nodeMounth = node.SelectSingleNode(".//td[1]");
                     var nodePercent = node.SelectSingleNode(".//td[2]"); //get percetns from html page
                     if ((nodeMounth != null) && (nodePercent != null))
-                    {  
+                    {
                         //get id (format:yearmonth)
                         record.YearMonth = YearMonthExtensions.ToYearMonth(year, nodeMounth.InnerText);
                         record.Percent = nodePercent.InnerText.Trim();

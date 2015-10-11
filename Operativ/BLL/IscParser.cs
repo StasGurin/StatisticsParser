@@ -7,19 +7,19 @@ namespace Operativ.BLL
 {
     public class IscParser
     {
-        static int parseLineNumber = 2;
+        public static int parseLineNumber = 2;
         static Month record = new Month();
 
         public static Month Parse(string year)
         {
-            
+
             var webGet = new HtmlWeb
             {
                 AutoDetectEncoding = false,
                 OverrideEncoding = UTF8Encoding.GetEncoding("windows-1251"),
             };
-            var docIsc = webGet.Load("http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c /isc_u/isc" + year + "m_u.html");
-            if (year == "2014") docIsc = webGet.Load("http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c /isc_u/isc" + year + "m_u_.html");//get html-page for parse
+            var docIsc = webGet.Load("http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c/isc_u/isc" + year + "m_u.html");
+            if (year == "2014") docIsc = webGet.Load("http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c/isc_u/isc" + year + "m_u_.html");//get html-page for parse
             var bodyNode = docIsc.DocumentNode.SelectSingleNode("//table[@class ='MsoNormalTable']");
             if (bodyNode != null)
             {
