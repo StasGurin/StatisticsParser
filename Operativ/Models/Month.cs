@@ -10,8 +10,7 @@ namespace Operativ.Models
         #region Properties
 
         public int YearMonth { get; set; }
-        public string Persent { get; set; }
-
+        public string Percent { get; set; }
 
         #endregion
 
