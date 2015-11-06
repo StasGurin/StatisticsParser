@@ -1,26 +1,20 @@
 ﻿using HtmlAgilityPack;
 using Operativ.Extensions;
 using Operativ.Models;
-using System.Text;
 
 namespace Operativ.BLL
 {
-    public class IscParser
+    public class IscParser : Parser
     {
         public static int parseLineNumber = 2;
         static Month record = new Month();
+        static IscParser webSite = new IscParser();
 
         public static Month Parse(string year)
         {
-
-            var webGet = new HtmlWeb
-            {
-                AutoDetectEncoding = false,
-                OverrideEncoding = UTF8Encoding.GetEncoding("windows-1251"),
-            };
-            var docIsc = webGet.Load("http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c/isc_u/isc" + year + "m_u.html");
-            if (year == "2014") docIsc = webGet.Load("http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c/isc_u/isc" + year + "m_u_.html");//get html-page for parse
-            var bodyNode = docIsc.DocumentNode.SelectSingleNode("//table[@class ='MsoNormalTable']");
+            webSite.Link = "http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c/isc_u/isc" + year + "m_u.html";
+            if (year == "2014") webSite.Link = "http://www.ukrstat.gov.ua/operativ/operativ" + year + "/ct/is_c/isc_u/isc" + year + "m_u_.html";//get html-page for parse
+            var bodyNode = webSite.abstractNode(webSite.Link);
             if (bodyNode != null)
             {
                 var nodeMounth = bodyNode.SelectSingleNode(".//tr[1]");
@@ -43,6 +37,12 @@ namespace Operativ.BLL
             }
             parseLineNumber++;
             return record;
+        }
+
+        public override HtmlNode abstractNode(string link)
+        {
+            var docBisc = WebGet.Load(link);
+            return docBisc.DocumentNode.SelectSingleNode("//table[@class ='MsoNormalTable']");
         }
     }
 }
