@@ -97,7 +97,9 @@
     <Compile Include="BLL\BiscParser.cs" />
     <Compile Include="BLL\IscParser.cs" />
     <Compile Include="BLL\Parser.cs" />
-    <Compile Include="Controllers\PreviousMonthsController.cs" />
+    <Compile Include="Controllers\BiscController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\IscController.cs" />
     <Compile Include="Extensions\YearMonthExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -114,9 +116,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

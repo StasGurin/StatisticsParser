@@ -1,24 +1,60 @@
-﻿using HtmlAgilityPack;
+﻿using System.Collections.Generic;
+using HtmlAgilityPack;
 using System.Text;
+using Operativ.Models;
 
 namespace Operativ.BLL
 {
     public abstract class Parser
     {
-        public HtmlWeb WebGet { get; set; }
-        public string Link { get; set; }
+        #region Properties
 
-        public Parser()
+        public Month Record { get; set; }
+        public HtmlWeb WebGet { get; set; }
+        protected string Link { get; set; }
+        protected int ParseLineNumber { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        protected Parser()
         {
-            var webSite = new HtmlWeb
-            {
-                AutoDetectEncoding = false,
-                OverrideEncoding = UTF8Encoding.GetEncoding("windows-1251")
-            };
-            WebGet = webSite;
+            WebGet = new HtmlWeb { AutoDetectEncoding = false, OverrideEncoding = Encoding.GetEncoding("windows-1251") };
         }
 
-        public abstract HtmlNode abstractNode(string link);
+        #endregion
 
+        #region Abstract Functions
+
+        protected abstract void Init(string year);
+
+        protected abstract void ParseBody(string year, HtmlNode bodyNode);
+
+        #endregion
+
+        #region General Functions
+
+        public List<Month> Parse(string year)
+        {
+            Init(year);
+            var months = new List<Month>();
+            var docBisc = WebGet.Load(Link);
+            var bodyNode = docBisc.DocumentNode.SelectSingleNode("//table[@class ='MsoNormalTable']");
+            if (bodyNode != null)
+            {
+                do
+                {
+                    Record = new Month();
+                    ParseBody(year, bodyNode);
+                    ParseLineNumber++;
+                    if(!Record.IsBreak)
+                        months.Add(Record);
+                } while (!Record.IsBreak);
+            }
+            return months;
+        }
+
+        #endregion
     }
 }
