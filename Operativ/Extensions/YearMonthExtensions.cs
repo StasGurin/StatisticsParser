@@ -26,10 +26,7 @@ namespace Operativ.Extensions
         {
             
             month = month.Trim().ToLower();
-            foreach (var kvp in monthYear) 
-            {
-                if (kvp.Key.Equals(month)) year = year + kvp.Value.ToString("D2");
-            }
+            if (monthYear.ContainsKey(month)) year+= monthYear[month].ToString("D2");
             var yearInt = Convert.ToInt32(year);
             return yearInt;
          }
