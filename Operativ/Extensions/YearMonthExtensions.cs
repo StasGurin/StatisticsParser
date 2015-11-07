@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using HtmlAgilityPack;
 
 namespace Operativ.Extensions
 {
     public static class YearMonthExtensions
     {
-        static Dictionary<string, int> monthYear = new Dictionary<string, int>()
+        static readonly Dictionary<string, int> MonthYear = new Dictionary<string, int>()
             {
                 {"січень", 1},
                 {"cічень", 1},
@@ -24,11 +25,15 @@ namespace Operativ.Extensions
 
         public static int ToYearMonth(this string year, string month)
         {
-            
             month = month.Trim().ToLower();
-            if (monthYear.ContainsKey(month)) year+= monthYear[month].ToString("D2");
-            var yearInt = Convert.ToInt32(year);
-            return yearInt;
-         }
+            if (MonthYear.ContainsKey(month))
+                year += MonthYear[month].ToString("D2");
+            return Convert.ToInt32(year);
+        }
+
+        public static string GetText(this HtmlNode node)
+        {
+            return node == null ? null : node.InnerText.Trim();
+        }
      }
 }

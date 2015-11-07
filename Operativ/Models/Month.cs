@@ -1,4 +1,6 @@
-﻿namespace Operativ.Models
+﻿using Operativ.Extensions;
+
+namespace Operativ.Models
 {
     public class Month
     {
@@ -6,18 +8,16 @@
 
         public int YearMonth { get; set; }
         public string Percent { get; set; }
+        public bool IsBreak { get { return Percent == "до грудня \r\n\t\tпопереднього року" || Percent == "&nbsp;"; } }
 
         #endregion
 
-        #region Constructors
+        #region General Functions
 
-        public Month()
+        public void Init(string year, string month, string percent)
         {
-        }
-
-        public Month(int yearMonth)
-        {
-            YearMonth = yearMonth;
+            YearMonth = year.ToYearMonth(month);
+            Percent = percent;
         }
 
         #endregion
